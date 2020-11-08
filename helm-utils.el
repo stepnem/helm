@@ -39,7 +39,6 @@
 (defvar bookmark-alist)
 (defvar dired-buffers)
 (defvar helm-show-completion-overlay)
-(defvar helm-buffers-maybe-switch-to-tab)
 (defvar helm-ff-transformer-show-only-basename)
 (defvar helm-popup-tip-mode)
 
@@ -306,7 +305,7 @@ If a prefix arg is given split windows vertically."
 (defun helm-buffers-switch-to-buffer-or-tab (buffer)
   "Switch to BUFFER in its tab if some."
   (if (and (fboundp 'tab-bar-mode)
-           helm-buffers-maybe-switch-to-tab)
+           (bound-and-true-p helm-buffers-maybe-switch-to-tab))
       (let* ((tab-bar-tab-name-function #'tab-bar-tab-name-all)
              (tabs (tab-bar-tabs))
              (tab-names (mapcar (lambda (tab)
